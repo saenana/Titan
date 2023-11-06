@@ -1059,7 +1059,7 @@ __global__ void computeSpringForces(CUDA_SPRING ** d_spring, int num_springs, do
             scale = (1 - 0.2 * sin(spring._omega * t));
         } else if (spring._type == ACTIVE_EXPAND_THEN_CONTRACT){
             scale = (1 + 0.2 * sin(spring._omega * t));
-	} else if (spring._type == (CUSTOM){
+	} else if (spring._type == CUSTOM){
             scale = (1 + spring._b / spring._rest * sin(spring._omega * t + spring._c));
 	    }
 

@@ -14,7 +14,7 @@ include(vcpkg_common_functions)
 set(SOURCE_PATH ${CURRENT_BUILDTREES_DIR}/src/Titan)
 
 vcpkg_from_github(OUT_SOURCE_PATH SOURCE_PATH
-        REPO jacobaustin123/Titan
+        REPO saenana/Titan
         HEAD_REF master
 )
 
