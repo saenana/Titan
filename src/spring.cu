@@ -40,6 +40,8 @@ CUDA_SPRING::CUDA_SPRING(const Spring & s) {
     _type = s._type;
     _omega = s._omega;
     _damping = s._damping;
+    _b = s._b;
+    _c = s._c;
 }
 
 CUDA_SPRING::CUDA_SPRING(const Spring & s, CUDA_MASS * left, CUDA_MASS * right) {
@@ -50,6 +52,8 @@ CUDA_SPRING::CUDA_SPRING(const Spring & s, CUDA_MASS * left, CUDA_MASS * right) 
     _type = s._type;
     _omega = s._omega;
     _damping = s._damping;
+    _b = s._b;
+    _c = s._c;
 }
 
 } // namespace titan

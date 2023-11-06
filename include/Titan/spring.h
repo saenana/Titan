@@ -14,24 +14,24 @@ class Mass;
 struct CUDA_SPRING;
 struct CUDA_MASS;
 
-enum SpringType {PASSIVE_SOFT, PASSIVE_STIFF, ACTIVE_CONTRACT_THEN_EXPAND, ACTIVE_EXPAND_THEN_CONTRACT};
+enum SpringType {PASSIVE_SOFT, PASSIVE_STIFF, ACTIVE_CONTRACT_THEN_EXPAND, ACTIVE_EXPAND_THEN_CONTRACT, CUSTOM};
 
 class Spring {
 public:
     Spring() : _left(nullptr), _right(nullptr), _k(10000.0), _rest(1.0), _type(PASSIVE_SOFT),
-    _omega(0.0), _damping(0.0), arrayptr(nullptr) {}
+    _omega(0.0), _damping(0.0), _b(0.0), _c(0.0), arrayptr(nullptr) {}
 
     Spring(Mass * left, Mass * right) : _left(left), _right(right), _k(10000.0), _type(PASSIVE_SOFT), 
-    _omega(0.0), _damping(0.0), arrayptr(nullptr) 
+    _omega(0.0), _damping(0.0), _b(0.0), _c(0.0), arrayptr(nullptr) 
     {
         this -> defaultLength();
     }
 
     Spring(Mass * left, Mass * right, double k, double rest_length) : _left(left), _right(right), 
-    _k(k), _rest(rest_length), _type(PASSIVE_SOFT), _omega(0.0), _damping(0.0) {}
+    _k(k), _rest(rest_length), _type(PASSIVE_SOFT), _omega(0.0), _damping(0.0), _b(0.0), _c(0.0) {}
 
     Spring(Mass * left, Mass * right, double k, double rest_length, SpringType type, double omega) :
-            _left(left), _right(right), _k(k), _rest(rest_length), _type(type), _omega(omega), _damping(0.0) {};
+            _left(left), _right(right), _k(k), _rest(rest_length), _type(type), _omega(omega), _damping(0.0), _b(0.0), _c(0.0) {};
 	    
     void update(const CUDA_SPRING & spr);
     void setRestLength(double rest_length) { _rest = rest_length; } //sets Rest length
@@ -53,6 +53,9 @@ public:
     SpringType _type; // 0-3, for oscillating springs
     double _omega; // frequency of oscillation
     double _damping; // damping on the masses.
+
+    double _b; // rest length = a+b*sin(omega*t+c)
+    double _c; // rest length = a+b*sin(omega*t+c)
     
 private:
     CUDA_SPRING *arrayptr; //Pointer to struct version for GPU cudaMalloc
@@ -81,6 +84,8 @@ struct CUDA_SPRING {
   SpringType _type;
   double _omega;
   double _damping;
+  double _b;
+  double _c;
 };
 
 } // namespace titan
