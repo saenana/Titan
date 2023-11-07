@@ -339,12 +339,12 @@ Spring * Simulation::createSpring(Mass * m1, Mass * m2) {
     return createSpring(s);
 }
 
-Spring * Simulation::createSpring(Mass * m1, Mass * m2, double k, double rest_length, SpringType type, double omega) {
+Spring * Simulation::createSpring(Mass * m1, Mass * m2, double k, double rest_length, double omega, double damping, double b, double c) {
     if (ENDED) {
         throw std::runtime_error("The simulation has ended. Cannot modify simulation after the end of the simulation.");
     }
 
-    Spring * s = new Spring(m1, m2, k, rest_length, type, omega);
+    Spring * s = new Spring(m1, m2, k, rest_length, omega, damping, b, c);
     return createSpring(s);
 }
 

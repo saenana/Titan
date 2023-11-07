@@ -32,6 +32,9 @@ public:
 
     Spring(Mass * left, Mass * right, double k, double rest_length, SpringType type, double omega) :
             _left(left), _right(right), _k(k), _rest(rest_length), _type(type), _omega(omega), _damping(0.0), _b(0.0), _c(0.0) {};
+
+    Spring(Mass * left, Mass * right, double k, double rest_length, double omega, double damping, double b, double c) :
+            _left(left), _right(right), _k(k), _rest(rest_length), _type(CUSTOM), _omega(omega), _damping(damping), _b(b), _c(c) {};
 	    
     void update(const CUDA_SPRING & spr);
     void setRestLength(double rest_length) { _rest = rest_length; } //sets Rest length
