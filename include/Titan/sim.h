@@ -42,6 +42,7 @@ public:
 
     Spring * createSpring();
     Spring * createSpring(Mass * m1, Mass * m2);
+    Spring * createSpring(Mass * m1, Mass * m2, double k, double rest_length, SpringType type, double omega);
 
     // Delete
     void deleteMass(Mass * m);

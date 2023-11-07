@@ -339,6 +339,15 @@ Spring * Simulation::createSpring(Mass * m1, Mass * m2) {
     return createSpring(s);
 }
 
+Spring * Simulation::createSpring(Mass * m1, Mass * m2, double k, double rest_length, SpringType type, double omega) {
+    if (ENDED) {
+        throw std::runtime_error("The simulation has ended. Cannot modify simulation after the end of the simulation.");
+    }
+
+    Spring * s = new Spring(m1, m2, k, rest_length, type, omega);
+    return createSpring(s);
+}
+
 __global__ void invalidate(CUDA_MASS ** ptrs, CUDA_MASS * m, int size) {
     int i = blockDim.x * blockIdx.x + threadIdx.x;
 
