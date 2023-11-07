@@ -14,7 +14,7 @@ include(vcpkg_common_functions)
 set(SOURCE_PATH ${CURRENT_BUILDTREES_DIR}/src/Titan)
 
 vcpkg_from_github(OUT_SOURCE_PATH SOURCE_PATH
-        REPO saenana/Titan
+        REPO nzcsx/Titan-glim
         HEAD_REF master
 )
 
