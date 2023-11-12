@@ -105,6 +105,7 @@ public:
 
     double time();
     bool running();
+    bool started();
 
     void printPositions();
 

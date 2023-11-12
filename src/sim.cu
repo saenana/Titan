@@ -1098,6 +1098,10 @@ bool Simulation::running() {
     return this -> RUNNING;
 }
 
+bool Simulation::started() {
+    return this -> STARTED;
+}
+
 #ifdef RK2
 template <bool step>
 #endif
